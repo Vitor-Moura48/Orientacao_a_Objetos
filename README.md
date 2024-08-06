@@ -1,2 +1,2 @@
-# Orienta-o-a-Objetos
+# Orientado a Objetos
 Conjunto de atividades
