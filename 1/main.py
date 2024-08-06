@@ -22,7 +22,8 @@ def forma_triangulo(lados):
 
 
 def main():
-    while True:
+    rodando = True
+    while rodando:
         print("\n*** Informe os lados do triângulo [0 = Sair] ***\n")
         triangulo = []
         
@@ -31,12 +32,13 @@ def main():
                 lado = float( input(f"Lado {len(triangulo) + 1}: ") )
                 if lado >= 0:
                     if lado == 0:
-                        return 0
+                        rodando = False
+                        break
                     triangulo.append(lado)
             except:
                 print("Ecorreu algum erro, tente novamnete!")
             
-        if verificar_triangulo(triangulo):
+        if len(triangulo) == 3 and verificar_triangulo(triangulo):
             print()
             print(f"Area do triângulo: {area_triangulo(triangulo)}")
             print(f"Forma do triângulo: {forma_triangulo(triangulo)}")
