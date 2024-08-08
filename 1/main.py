@@ -1,6 +1,14 @@
-class Triangulo:
+class FormaGeometrica:
     def __init__(self, lados) -> None:
         self.lados = lados
+
+    def calcular_semi_perimetro(self):
+        if len(self.lados) >= 3:
+            self.semi_perimetro = sum(self.lados) / 2
+
+class Triangulo(FormaGeometrica):
+    def __init__(self, lados) -> None:
+        FormaGeometrica.__init__(self, lados)
 
     def verificar_triangulo(self):
         lados_ordenados = sorted(self.lados)
@@ -11,8 +19,8 @@ class Triangulo:
         return True
 
     def area_triangulo(self):
-        semi_perimetro = sum(self.lados) / 2
-        return round( (semi_perimetro * (semi_perimetro-self.lados[0]) * (semi_perimetro-self.lados[1]) * (semi_perimetro-self.lados[2]))**0.5 , 2)
+        self.calcular_semi_perimetro()
+        return round( (self.semi_perimetro * (self.semi_perimetro-self.lados[0]) * (self.semi_perimetro-self.lados[1]) * (self.semi_perimetro-self.lados[2]))**0.5 , 2)
 
     def forma_triangulo(self):
         combinacoes = len(set(self.lados))
