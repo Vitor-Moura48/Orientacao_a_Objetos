@@ -1,5 +1,5 @@
 class FormaGeometrica:
-    def __init__(self, lados) -> None:
+    def __init__(self, lados):
         self.lados = lados
 
     def calcular_semi_perimetro(self):
@@ -7,7 +7,7 @@ class FormaGeometrica:
             self.semi_perimetro = sum(self.lados) / 2
 
 class Triangulo(FormaGeometrica):
-    def __init__(self, lados) -> None:
+    def __init__(self, lados):
         FormaGeometrica.__init__(self, lados)
 
     def verificar_triangulo(self):
