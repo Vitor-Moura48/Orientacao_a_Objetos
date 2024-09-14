@@ -86,29 +86,80 @@ public class AppSistemaElevadorArray {
 
     public static void entradaPessoas() {
         /* De maneira recorrente realizar os seguintes passos:
-         * 1 - Mostrar o título "Entrada de Pessoas"
-         * 2 - Verificar e informar se o vetor estiver vazio
+         * 1 - Mostrar o título "Entrada de Pessoas"                                             9
+         * 2 - Verificar e informar se o vetor estiver vazio                                     9
          * 3 - Solicitar o código do elevador onde as pessoas entraram
-         *     - Se o código for 0: Retornar ao menu principal
+         *     - Se o código for 0: Retornar ao menu principal                                   9
          *     - Se o código não for encontrado, informar ao usuário e
          *       retornar ao passo 3
-         *     - Mostrar o status do elevador
+         *     - Mostrar o status do elevador                                                    9
          *     - Se o elevador não estiver em operação, informar ao usuário e
          *       retornar ao passo 3
-         * 4 - De maneira recorrente solicitar a quantidade de pessoas que entraram no elevador
+         * 4 - De maneira recorrente solicitar a quantidade de pessoas que entraram no elevador  9
          *     - Se a quantidade for 0, retornar ao passo 3
-         *     - Registrar a entrada da quantidade de pessoas no elevador
-         *     - Mostrar os dados do elevador
+         *     - Registrar a entrada da quantidade de pessoas no elevador                        9
+         *     - Mostrar os dados do elevador                                                    9
          *     - Mostrar mensagem de entrada efetuada
          *     - Se o elevador não foi bloqueado retornar ao passo 4
          *     - Se o elevador foi bloqueado, alertar ao usuário e retornar ao passo 3
          */
+
+        System.out.println("Entrada de Pessoas");
+        if (this.contElevador == 0){
+            System.out.println("Vetor Vazio");
+        }
+
+        do {
+            System.out.print("Código do Elevador ou 0 para retornar: ");
+
+            int codigo = input.nextInt();
+            if (codigo == 0){
+                return
+            }
+
+            if (pesquisaElevadorPorCodigo(codigo) == -1){
+                System.out.println("Código não encontrado");
+                continue;
+            }
+
+            String status = elevadores[codigo].getStatus()
+            System.out.println("Status do Elevador: " + status);
+            if (status != "Em Operação"){
+                System.out.println("Elevador não está em operação");
+                continue;
+            }
+
+            do{
+                System.out.println("Quantidade de pessoas: ");
+                int quantidadeEntradas = input.nextInt();
+                if (quantidadeEntradas == 0){
+                    break;
+                }
+
+                elevadores[codigo].registrarEntrada(quantidadeEntradas)
+                System.out.println("Código: " + elevadores[codigo].getCodigo());
+                System.out.println("Pessoas Transportadas: " + elevadores[codigo].getPessoasTransportadas);
+                System.out.println("Limite de Pessoas: " + elevadores[codigo].getLimitePessoas());
+                System.out.println("Status: " + elevadores[codigo].getStatus());
+                System.out.println("\nEntrada Efetuada");
+
+                if (elevadores[codigo].getStatus != "Bloqueado"){
+                    continue;
+                }
+                System.out.println("Elevador Bloqueado!");
+
+                break;
+            } while (true)
+
+            break;
+        } while (true)
+
     }
 
     public static void saidaPessoas() {
         /* De maneira recorrente realizar os seguintes passos:
-         * 1 - Mostrar o título "Saída de Pessoas"
-         * 2 - Verificar e informar se o vetor estiver vazio
+         * 1 - Mostrar o título "Saída de Pessoas"                                              9
+         * 2 - Verificar e informar se o vetor estiver vazio                                    9
          * 3 - Solicitar o código do elevador de onde as pessoas saíram
          *     - Se o código for 0: Retornar ao menu principal
          *     - Se o código não for encontrado, informar ao usuário e
@@ -117,14 +168,64 @@ public class AppSistemaElevadorArray {
          *     - Se o elevador não estiver em operação, informar ao usuário e
          *       retornar ao passo 3
          * 4 - De maneira recorrente solicitar a quantidade de pessoas que saíram do elevador
-         *     - Se a quantidade for 0, retornar ao passo 3
+         *     - Se a quantidade for 0, retornar ao passo 3                                     9
          *     - Se a quantidade for maior que a quantidade de pessoas transportada,
-         *       informar ao usuário e retornar ao passo 4
-         *     - Registrar a saída da quantidade de pessoas no elevador
+         *       informar ao usuário e retornar ao passo 4                                      9
+         *     - Registrar a saída da quantidade de pessoas no elevador                         9
          *     - Mostrar os dados do elevador
          *     - Mostrar mensagem de saída efetuada
          *     - Retornar ao passo 4
          */
+
+        System.out.println("Saída de Pessoas");
+        if (this.contElevador == 0){
+            System.out.println("Vetor Vazio");
+        }
+
+        do {
+            System.out.print("Código do Elevador ou 0 para retornar: ");
+
+            int codigo = input.nextInt();
+            if (codigo == 0){
+                break;
+            }
+
+            if (pesquisaElevadorPorCodigo(codigo) == -1){
+                System.out.println("Código não encontrado");
+                continue;
+            }
+
+            String status = elevadores[codigo].getStatus()
+            System.out.println("Status do Elevador: " + status);
+            if (status != "Em Operação"){
+                System.out.println("Elevador não está em operação");
+                continue;
+            }
+
+            do{
+                System.out.println("Quantidade de pessoas: ");
+                int quantidadeSaidas = input.nextInt();
+                if (quantidadeSaidas == 0){
+                    break;
+                }
+                else if (quantidadeSaidas > elevadores[codigo].getPessoasTransportadas()){
+                    System.out.println("Saída maior que pessoas no elevador");
+                    break;
+                }
+
+                elevadores[codigo].registraSaida(quantidadeSaidas)
+                System.out.println("Código: " + elevadores[codigo].getCodigo());
+                System.out.println("Pessoas Transportadas: " + elevadores[codigo].getPessoasTransportadas);
+                System.out.println("Limite de Pessoas: " + elevadores[codigo].getLimitePessoas());
+                System.out.println("Status: " + elevadores[codigo].getStatus());
+                System.out.println("\nSaída Efetuada");
+
+                break;
+
+            } while (true)
+
+        } while (true)
+
     }
 
 
