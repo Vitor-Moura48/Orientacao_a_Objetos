@@ -106,6 +106,56 @@ public class AppSistemaElevadorLista {
          *     - Se o elevador não foi bloqueado retornar ao passo 4
          *     - Se o elevador foi bloqueado, alertar ao usuário e retornar ao passo 3
          */
+
+        System.out.println("Entrada de Pessoas");
+        if (this.contElevador == 0){
+            System.out.println("Vetor Vazio");
+        }
+
+        do {
+            System.out.print("Código do Elevador ou 0 para retornar: ");
+
+            int codigo = input.nextInt();
+            if (codigo == 0){
+                return
+            }
+
+            if (pesquisaElevadorPorCodigo(codigo) == null){
+                System.out.println("Código não encontrado");
+                continue;
+            }
+
+            String status = elevadores[codigo].getStatus()
+            System.out.println("Status do Elevador: " + status);
+            if (status != "Em Operação"){
+                System.out.println("Elevador não está em operação");
+                continue;
+            }
+
+            do{
+                System.out.println("Quantidade de pessoas: ");
+                int quantidadeEntradas = input.nextInt();
+                if (quantidadeEntradas == 0){
+                    break;
+                }
+
+                elevadores[codigo].registrarEntrada(quantidadeEntradas)
+                System.out.println("Código: " + elevadores[codigo].getCodigo());
+                System.out.println("Pessoas Transportadas: " + elevadores[codigo].getPessoasTransportadas);
+                System.out.println("Limite de Pessoas: " + elevadores[codigo].getLimitePessoas());
+                System.out.println("Status: " + elevadores[codigo].getStatus());
+                System.out.println("\nEntrada Efetuada");
+
+                if (elevadores[codigo].getStatus != "Bloqueado"){
+                    continue;
+                }
+                System.out.println("Elevador Bloqueado!");
+
+                break;
+            } while (true)
+
+            break;
+        } while (true)
     }
 
     public static void saidaPessoas() {
@@ -128,6 +178,55 @@ public class AppSistemaElevadorLista {
          *     - Mostrar mensagem de saída efetuada
          *     - Retornar ao passo 4
          */
+
+        System.out.println("Saída de Pessoas");
+        if (this.contElevador == 0){
+            System.out.println("Vetor Vazio");
+        }
+
+        do {
+            System.out.print("Código do Elevador ou 0 para retornar: ");
+
+            int codigo = input.nextInt();
+            if (codigo == 0){
+                break;
+            }
+
+            if (pesquisaElevadorPorCodigo(codigo) == null){
+                System.out.println("Código não encontrado");
+                continue;
+            }
+
+            String status = elevadores[codigo].getStatus()
+            System.out.println("Status do Elevador: " + status);
+            if (status != "Em Operação"){
+                System.out.println("Elevador não está em operação");
+                continue;
+            }
+
+            do{
+                System.out.println("Quantidade de pessoas: ");
+                int quantidadeSaidas = input.nextInt();
+                if (quantidadeSaidas == 0){
+                    break;
+                }
+                else if (quantidadeSaidas > elevadores[codigo].getPessoasTransportadas()){
+                    System.out.println("Saída maior que pessoas no elevador");
+                    break;
+                }
+
+                elevadores[codigo].registraSaida(quantidadeSaidas)
+                System.out.println("Código: " + elevadores[codigo].getCodigo());
+                System.out.println("Pessoas Transportadas: " + elevadores[codigo].getPessoasTransportadas);
+                System.out.println("Limite de Pessoas: " + elevadores[codigo].getLimitePessoas());
+                System.out.println("Status: " + elevadores[codigo].getStatus());
+                System.out.println("\nSaída Efetuada");
+
+                break;
+
+            } while (true)
+
+        } while (true)
     }
 
 
