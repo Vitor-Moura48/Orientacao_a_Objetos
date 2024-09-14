@@ -104,55 +104,55 @@ public class AppSistemaElevadorArray {
          *     - Se o elevador foi bloqueado, alertar ao usuário e retornar ao passo 3
          */
 
-        System.out.println("Entrada de Pessoas");
-        if (this.contElevador == 0){
+        System.out.println("\n ***   Entrada de Pessoas   *** ");
+        if (contElevador == 0){
             System.out.println("Vetor Vazio");
         }
 
         do {
-            System.out.print("Código do Elevador ou 0 para retornar: ");
+            System.out.print("\nCódigo do Elevador ou [0] para retornar: ");
 
             int codigo = input.nextInt();
             if (codigo == 0){
-                return
+                return;
             }
 
             if (pesquisaElevadorPorCodigo(codigo) == -1){
                 System.out.println("Código não encontrado");
                 continue;
             }
+            int indexElevador = pesquisaElevadorPorCodigo(codigo);
 
-            String status = elevadores[codigo].getStatus()
-            System.out.println("Status do Elevador: " + status);
-            if (status != "Em Operação"){
+            String status = elevadores[indexElevador].getStatus();
+            System.out.println("\nStatus do Elevador: " + status);
+            if (status != "Em operação"){
                 System.out.println("Elevador não está em operação");
                 continue;
             }
 
             do{
-                System.out.println("Quantidade de pessoas: ");
+                System.out.print("Quantidade de pessoas: ");
                 int quantidadeEntradas = input.nextInt();
                 if (quantidadeEntradas == 0){
                     break;
                 }
 
-                elevadores[codigo].registrarEntrada(quantidadeEntradas)
-                System.out.println("Código: " + elevadores[codigo].getCodigo());
-                System.out.println("Pessoas Transportadas: " + elevadores[codigo].getPessoasTransportadas);
-                System.out.println("Limite de Pessoas: " + elevadores[codigo].getLimitePessoas());
-                System.out.println("Status: " + elevadores[codigo].getStatus());
+                elevadores[indexElevador].registraEntrada(quantidadeEntradas);
+                System.out.println("\nCódigo: " + elevadores[indexElevador].getCodigo());
+                System.out.println("Pessoas Transportadas: " + elevadores[indexElevador].getPessoasTransportadas());
+                System.out.println("Limite de Pessoas: " + elevadores[indexElevador].getLimitePessoas());
+                System.out.println("Status: " + elevadores[indexElevador].getStatus());
                 System.out.println("\nEntrada Efetuada");
 
-                if (elevadores[codigo].getStatus != "Bloqueado"){
+                if (elevadores[indexElevador].getStatus() != "Bloqueado"){
                     continue;
                 }
                 System.out.println("Elevador Bloqueado!");
 
                 break;
-            } while (true)
+            } while (true);
 
-            break;
-        } while (true)
+        } while (true);
 
     }
 
@@ -177,13 +177,13 @@ public class AppSistemaElevadorArray {
          *     - Retornar ao passo 4
          */
 
-        System.out.println("Saída de Pessoas");
-        if (this.contElevador == 0){
+        System.out.println("\n ***   Saída de Pessoas   *** ");
+        if (contElevador == 0){
             System.out.println("Vetor Vazio");
         }
 
         do {
-            System.out.print("Código do Elevador ou 0 para retornar: ");
+            System.out.print("\nCódigo do Elevador ou [0] para retornar: ");
 
             int codigo = input.nextInt();
             if (codigo == 0){
@@ -194,37 +194,38 @@ public class AppSistemaElevadorArray {
                 System.out.println("Código não encontrado");
                 continue;
             }
+            int indexElevador = pesquisaElevadorPorCodigo(codigo);
 
-            String status = elevadores[codigo].getStatus()
-            System.out.println("Status do Elevador: " + status);
-            if (status != "Em Operação"){
+            String status = elevadores[indexElevador].getStatus();
+            System.out.println("\nStatus do Elevador: " + status);
+            if (status != "Em operação"){
                 System.out.println("Elevador não está em operação");
                 continue;
             }
 
             do{
-                System.out.println("Quantidade de pessoas: ");
+                System.out.print("Quantidade de pessoas: ");
                 int quantidadeSaidas = input.nextInt();
                 if (quantidadeSaidas == 0){
                     break;
                 }
-                else if (quantidadeSaidas > elevadores[codigo].getPessoasTransportadas()){
-                    System.out.println("Saída maior que pessoas no elevador");
+                else if (quantidadeSaidas > elevadores[indexElevador].getPessoasTransportadas()){
+                    System.out.println("\nSaída maior que pessoas no elevador");
                     break;
                 }
 
-                elevadores[codigo].registraSaida(quantidadeSaidas)
-                System.out.println("Código: " + elevadores[codigo].getCodigo());
-                System.out.println("Pessoas Transportadas: " + elevadores[codigo].getPessoasTransportadas);
-                System.out.println("Limite de Pessoas: " + elevadores[codigo].getLimitePessoas());
-                System.out.println("Status: " + elevadores[codigo].getStatus());
-                System.out.println("\nSaída Efetuada");
+                elevadores[indexElevador].registraSaida(quantidadeSaidas);
+                System.out.println("\nCódigo: " + elevadores[indexElevador].getCodigo());
+                System.out.println("Pessoas Transportadas: " + elevadores[indexElevador].getPessoasTransportadas());
+                System.out.println("Limite de Pessoas: " + elevadores[indexElevador].getLimitePessoas());
+                System.out.println("Status: " + elevadores[indexElevador].getStatus());
+                System.out.println("\nSaída Efetuada\n");
 
                 break;
 
-            } while (true)
+            } while (true);
 
-        } while (true)
+        } while (true);
 
     }
 
